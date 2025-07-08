@@ -1,0 +1,10 @@
+1. npm init -y
+2. npm install --save-dev webpack webpack-cli webpack-merge webpack-dev-server typescript ts-loader less less-loader css-loader style-loader pug pug-loader html-webpack-plugin mini-css-extract-plugin script-loader copy-webpack-plugin 
+3. create webpack.config.js
+4. create tsconfig.json
+
+
+
+
+
+
