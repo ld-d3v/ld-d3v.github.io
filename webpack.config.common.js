@@ -21,9 +21,9 @@ module.exports = {
             {
                 test: /\.less$/i,
                 use: [
-                    MiniCssExtractPlugin.loader,   // ⟵ extract to a file
-                    'css-loader',                  // ⟵ turn CSS → CommonJS
-                    'less-loader'                  // ⟵ compile Less → CSS
+                    MiniCssExtractPlugin.loader,   // extract to a file
+                    'css-loader',                  // turn CSS → CommonJS
+                    'less-loader'                  // compile Less → CSS
                 ],
             },
             {
@@ -43,7 +43,7 @@ module.exports = {
     },
 
     plugins: [
-        new HtmlWebpackPlugin({ template: 'src/pug/index.pug' }),
+        new HtmlWebpackPlugin({ template: 'src/pug/index.pug', inject: false }),
         new MiniCssExtractPlugin({ filename: 'main.css' }),
         new CopyPlugin({
             patterns: [

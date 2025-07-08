@@ -1,3 +1,3 @@
-import './less/main.less';
-import './js/main.js';
+import './less/index.less';
+import './js/index.js';
 import './pug/index.pug';
