@@ -35,4 +35,4 @@ MIT License
 
 ---
 
-> **Inspired by**: [thebestmotherfuckingwebsite](https://github.com/denysvitali/thebestmotherfuckingwebsite/)
+> **Inspired by**: [thebestmotherfuckingwebsite](https://thebestmotherfucking.website/)
