@@ -1,7 +1,7 @@
 # ld-d3v.github.io
 
 Welcome to **ld-d3v.github.io** — the source code for [ld-d3v's](https://github.com/ld-d3v) personal website.  
-View it live at [https://ld-d3v.github.io/](https://ld-d3v.github.io/) | [ld-](http://ldao.ix.tc/)
+View it live at [https://ld-d3v.github.io/](https://ld-d3v.github.io/) | [http://ldao.ix.tc](http://ldao.ix.tc/)
 
 
 ## Features
