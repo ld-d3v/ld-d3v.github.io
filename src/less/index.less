@@ -14,6 +14,11 @@
 @blockQuoteColor: #456;
 @openQuoteColor: #666;
 
+// includes
+@import "./_btn_top.less";
+@import "./_btn_projects.less";
+@import "./_projects.less";
+
 .light() {
     html {
         background-color: @bodybgColor;
@@ -68,6 +73,34 @@ body {
 
 html.contrast {
     .contrast();
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    margin-right: auto;
+
+    nav {
+        margin-left: auto;
+        display: flex;
+        gap: 1.5rem;
+
+        a {
+            color: @linkColor;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:visited {
+                color: @linkVisitedColor;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 .make_it_dark(@lightenBy) {
@@ -177,42 +210,6 @@ p.st {
     margin-top: -1em;
 }
 
-div.fancyPositioning {
-
-    div.picture-left {
-        float: left;
-        width: 40%;
-        overflow: hidden;
-        margin-right: 1em;
-
-        img {
-            width: 100%;
-        }
-
-        figure {
-            margin: 10px;
-
-            figcaption {
-                font-size: 0.7em;
-            }
-        }
-    }
-
-    div.tleft {
-        float: left;
-        width: 55%;
-
-        p:first-child {
-            margin-top: 0;
-        }
-    }
-
-    &::after {
-        display: block;
-        content: "";
-        clear: both;
-    }
-}
 
 ul {
     li {
@@ -330,7 +327,6 @@ button.cont-inv {
 #contrast {
     color: #000;
     top: 10px;
-    .noselect
 }
 
 #invmode {
@@ -339,7 +335,6 @@ button.cont-inv {
     position: fixed;
     top: 34px;
     text-decoration: underline;
-    .noselect
 }
 
 @media screen and (max-width:1080px) {
@@ -353,64 +348,11 @@ button.cont-inv {
     }
 }
 
-span.sb {
-    cursor: not-allowed;
-    color: @shittyBlue;
-}
-
-span.sv {
-    cursor: not-allowed;
-    color: @shittyViolet;
-}
-
-span.foufoufou {
-    &::before {
-        content: "";
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        margin-left: 0.2em;
-        margin-right: 0.2em;
-        background-color: #444;
-    }
-
-    color: #444;
-    font-weight: bold;
-}
-
-span.foufivfoufivfoufiv {
-    &::before {
-        content: "";
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        margin-left: 0.2em;
-        margin-right: 0.2em;
-        background-color: #454545;
-    }
-
-    color: #454545;
-    font-weight: bold;
-}
-
-span.mfw {
-    color: @lightRed;
-}
-
-a.kopimi {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    img.kopimi {
-        display: block;
-        height: 2em;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-p.fakepre {
-    font-family: monospace;
-    font-size: 0.9em;
+.site-footer {
+    text-align: center;
+    font-size: 0.85em;
+    color: lighten(@bodyTextColor, 20%);
+    margin-top: 4rem;
+    padding-top: 1rem;
+    border-top: 1px solid fade(@bodyTextColor, 15%);
 }

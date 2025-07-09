@@ -1,0 +1,72 @@
+#projects {
+    margin-top: 4rem;
+
+    .project {
+        border-left: 4px solid @linkVisitedColor;
+        padding-left: 1rem;
+        margin-bottom: 2rem;
+
+        h3 {
+            margin: 0;
+            font-size: 1.4em;
+        }
+
+        p {
+            margin: 0.5em 0;
+        }
+
+        ul.tech {
+            margin: 0.5em 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 1em;
+            font-size: 0.85em;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background: fade(#164e63, 15%);
+                padding: 0.2em 0.6em;
+                border-radius: 4px;
+                color: #22d3ee;
+                text-align: center;
+            }
+        }
+
+        a {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: @linkColor;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.project {
+    display: flex;
+    gap: 1rem;
+
+    img {
+        width: 120px;
+        border-radius: 4px;
+    }
+
+    .info {
+        flex: 1;
+    }
+
+}
+
+html.dark #projects ul.tech li,
+html.dark_contrast #projects ul.tech li,
+html.inverted #projects ul.tech li {
+    background: fade(#22d3ee, 15%);
+    color: #164e63;
+}

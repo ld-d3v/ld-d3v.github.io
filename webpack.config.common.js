@@ -47,7 +47,7 @@ module.exports = {
         new MiniCssExtractPlugin({ filename: 'main.css' }),
         new CopyPlugin({
             patterns: [
-                { from: 'src/public/', to: './' },
+                { from: 'src/public/', to: './' }, 
             ],
         })
     ],
