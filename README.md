@@ -33,6 +33,8 @@ Then, open your browser and navigate to [http://localhost:3000](http://localhost
 
 MIT License
 
+## Benchmarks
+ ![PageSpeed Insights](media/pagespeed-web-dev-result.png)
 ---
 
 > **Inspired by**: [thebestmotherfuckingwebsite](https://thebestmotherfucking.website/)
