@@ -1,5 +1,8 @@
-html
+html(lang="en")
   head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description", content="A portfolio site showcasing software projects by Loc Dao, focused on clean, efficient, and thoughtful development.")
     title #{title}
     link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
     link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
@@ -7,8 +10,8 @@ html
     link(rel="manifest" href="/site.webmanifest")
     link(rel="stylesheet" type="text/css" href="/main.css")
   body
-    button#contrast.cont-inv(tabindex="1") Add more contrast
-    button#invmode.cont-inv(tabindex="2") Light mode
+    button#contrast.cont-inv(tabindex="0") Add more contrast
+    button#invmode.cont-inv(tabindex="1") Light mode
 
     .header-container
       h1#home Welcome!!
