@@ -1,97 +1,60 @@
 html
-head
-    title LD's space
+  head
+    title #{title}
     link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
     link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
     link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
     link(rel="manifest" href="/site.webmanifest")
     link(rel="stylesheet" type="text/css" href="/main.css")
-body
-  button#contrast.cont-inv(tabindex="1") Add more contrast
-  button#invmode.cont-inv(tabindex="2")  Light mode
-  .header-container
-    h1#home Welcome!!
-    nav
-      a(href="#home") Home
-      a(href="#about") About me
-      a(href="#projects") Projects
-  p.st I'm Loc Dao (LD), a software engineer. This is my corner of the internet.
-  p(style="text-align: center")
-    |  [ 
-    a(href="https://github.com/lukedaoo") Github
-    |  | 
-    a(href="https://www.linkedin.com/in/dhuuloc") Linkedin
-    |  | 
-    a(href="mailto:locdao.fw@gmail.com") Mail
-    |  ]
-  blockquote
-    span Make it work, make it right, make it fast—in that order.
-    author
-      a(href="https://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast") Kent Beck
-  h2#about About me
-  p
-    |Hi, I'm Loc Dao, a software engineer who crafts clean, thoughtful, and meaningful solutions. 
-    |I believe in minimalism and high standards for everything I build. Thanks for visiting!
-  section#projects
-    h2 Projects
-    p 
-      | in-progress
-//-
-    .project
-      h3 MyCoolApp 
-      p A blazing fast app that helps developers track tasks efficiently.
-      ul.tech
-        li Vue.js
-        li Firebase
-        li Tailwind CSS
-      a.btn-live(href="https://your-demo-url.com" target="_blank") 
-        i.icon-live
-      a.btn-github(href="https://github.com/lukedaoo/mycoolapp" target="_blank")
-        i.icon-github
-    .project
-      h3 MyCoolApp 
-      p A blazing fast app that helps developers track tasks efficiently.
-      ul.tech
-        li Vue.js
-        li Firebase
-        li Tailwind CSS
-      a.btn-live(href="https://your-demo-url.com" target="_blank") 
-        i.icon-live
-      a.btn-github(href="https://github.com/lukedaoo/mycoolapp" target="_blank")
-        i.icon-github
-    .project
-      h3 MyCoolApp 
-      p A blazing fast app that helps developers track tasks efficiently.
-      ul.tech
-        li Vue.js
-        li Firebase
-        li Tailwind CSS
-      a.btn-live(href="https://your-demo-url.com" target="_blank") 
-        i.icon-live
-      a.btn-github(href="https://github.com/lukedaoo/mycoolapp" target="_blank")
-        i.icon-github
-    .project
-      h3 MyCoolApp 
-      p A blazing fast app that helps developers track tasks efficiently.
-      ul.tech
-        li Vue.js
-        li Firebase
-        li Tailwind CSS
-      a.btn-live(href="https://your-demo-url.com" target="_blank")#sss 
-        i.icon-live
-      a.btn-github(href="https://github.com/lukedaoo/mycoolapp" target="_blank")
-        i.icon-github
-    .project
-      h3 MyCoolApp 
-      p A blazing fast app that helps developers track tasks efficiently.
-      ul.tech
-        li Vue.js
-        li Firebase
-        li Tailwind CSS
-      a.btn-github(href="https://github.com/lukedaoo/mycoolapp" target="_blank")
-        i.icon-github
--//
-  button#goTop.btn-top ↥ Top
-  footer.site-footer
-    p © Copyright by LD #{new Date().getFullYear()}
-  script(src="/main.js" type="text/javascript")
+  body
+    button#contrast.cont-inv(tabindex="1") Add more contrast
+    button#invmode.cont-inv(tabindex="2") Light mode
+
+    .header-container
+      h1#home Welcome!!
+      nav
+        a(href="#home") Home
+        a(href="#about") About me
+        a(href="#projects") Projects
+
+    p.st I'm Loc Dao (LD), a software engineer. This is my corner of the internet.
+
+    p(style="text-align: center")
+      | [ 
+      each key, i in Object.keys(social)
+        - const label = key.charAt(0).toUpperCase() + key.slice(1)
+        - const href = key === 'email' ? `mailto:${social[key]}` : social[key]
+        a(href=href target="_blank")= label
+        if i !== Object.keys(social).length - 1
+          |  |  
+      | ]
+
+    blockquote
+      span #{quotes.text}
+      author
+        a(href=quotes.src)= quotes.author
+
+    h2#about About me
+    p= about
+
+    section#projects
+      h2 Projects
+      each project in projects
+        .project
+          h3= project.name
+          p= project.description
+          ul.tech
+            each tag in project.tags.slice(0, 5)
+              li= tag
+          div.button-group(style="display: flex; gap: 10px;")
+            if project.live_link
+              a.btn-live(href=project.live_link target="_blank")
+                i.icon-live
+            if project.source_link
+              a.btn-github(href=project.source_link target="_blank")
+                i.icon-github
+
+    button#goTop.btn-top ↥ Top
+    footer.site-footer
+      p © Copyright by LD #{new Date().getFullYear()}
+    script(src="/main.js" type="text/javascript")

@@ -1,0 +1,39 @@
+{
+    "title": "LD's space",
+    "social": {
+        "github": "https://github.com/lukedaoo",
+        "linkedin": "https://www.linkedin.com/in/dhuuloc/",
+        "email": "locdao.fw@gmail.com"
+    },
+    "about": "Hi, I'm Loc Dao, a software engineer who crafts clean, thoughtful, and meaningful solutions. I believe in minimalism and high standards for everything I build. Thanks for visiting!",
+    "quotes": {
+        "text": "Make it work, make it right, make it fast—in that order.",
+        "author": "Kent Beck",
+        "src": "https://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast"
+    },
+    "projects": [
+        {
+            "id": "personal-website",
+            "name": "Personal website",
+            "description": "This website",
+            "source_link": "https://github.com/ld-d3v/ld-d3v.github.io",
+            "live_link": "https://ld-d3v.github.io",
+            "tags": [
+                "Pug",
+                "TypeScript",
+                "Webpack",
+                "Less",
+                "Pug"
+            ]
+        },
+                {
+            "id": "gifter",
+            "name": "Gifter",
+            "description": "Display gif in the terminal",
+            "source_link": "https://github.com/lukedaoo/gifter/",
+            "tags": [
+                "Go"
+            ]
+        }
+    ]
+}

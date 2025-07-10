@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
+const data = JSON.parse(require('fs').readFileSync('data.json', 'utf-8'));
+
 module.exports = {
     entry: './src/index.ts',
     module: {
@@ -43,11 +45,15 @@ module.exports = {
     },
 
     plugins: [
-        new HtmlWebpackPlugin({ template: 'src/pug/index.pug', inject: false }),
+        new HtmlWebpackPlugin({
+            template: 'src/pug/index.pug',
+            inject: true,
+            templateParameters: data
+        }),
         new MiniCssExtractPlugin({ filename: 'main.css' }),
         new CopyPlugin({
             patterns: [
-                { from: 'src/public/', to: './' }, 
+                { from: 'src/public/', to: './' },
             ],
         })
     ],
