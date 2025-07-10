@@ -8,10 +8,9 @@ html(lang="en")
     link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
     link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
     link(rel="manifest" href="/site.webmanifest")
-    link(rel="stylesheet" type="text/css" href="/main.css")
   body
-    button#contrast.cont-inv(tabindex="0") Add more contrast
-    button#invmode.cont-inv(tabindex="1") Light mode
+    button#contrast.cont-inv Add more contrast
+    button#invmode.cont-inv Light mode
 
     .header-container
       h1#home Welcome!!
@@ -27,7 +26,7 @@ html(lang="en")
       each key, i in Object.keys(social)
         - const label = key.charAt(0).toUpperCase() + key.slice(1)
         - const href = key === 'email' ? `mailto:${social[key]}` : social[key]
-        a(href=href target="_blank")= label
+        a(href=href target="_blank" aria-label=label)= label
         if i !== Object.keys(social).length - 1
           |  |  
       | ]
@@ -35,7 +34,7 @@ html(lang="en")
     blockquote
       span #{quotes.text}
       author
-        a(href=quotes.src)= quotes.author
+        a(href=quotes.src aria-label="Read more about it")= quotes.author
 
     h2#about About me
     p= about
@@ -51,13 +50,12 @@ html(lang="en")
               li= tag
           div.button-group(style="display: flex; gap: 10px;")
             if project.live_link
-              a.btn-live(href=project.live_link target="_blank")
+              a.btn-live(href=project.live_link target="_blank" aria-label="View live project")
                 i.icon-live
             if project.source_link
-              a.btn-github(href=project.source_link target="_blank")
+              a.btn-github(href=project.source_link target="_blank" aria-label="View source on GitHub")
                 i.icon-github
 
     button#goTop.btn-top ↥ Top
     footer.site-footer
       p © Copyright by LD #{new Date().getFullYear()}
-    script(src="/main.js" type="text/javascript")

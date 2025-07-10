@@ -38,7 +38,7 @@ module.exports = {
     resolve: { extensions: ['.ts', '.js'] },
 
     output: {
-        filename: 'main.js',
+        filename: 'main.[contenthash].js',
         path: path.resolve(__dirname, 'docs'),
         clean: true,
         publicPath: '',
@@ -47,10 +47,14 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/pug/index.pug',
-            inject: true,
+            inject: 'body',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            },
             templateParameters: data
         }),
-        new MiniCssExtractPlugin({ filename: 'main.css' }),
+        new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' }),
         new CopyPlugin({
             patterns: [
                 { from: 'src/public/', to: './' },
