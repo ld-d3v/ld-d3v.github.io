@@ -44,6 +44,6 @@
                 "React", "TypeScript", "Vite", "TailwindCSS",
                 "Go", "MongoDB", "PostgreSQL"
             ]
-        
+        } 
     ]
 }
