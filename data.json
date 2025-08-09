@@ -40,6 +40,7 @@
             "name": "Zodit",
             "description": "Ultimate habit tracking app",
             "source_link": "https://github.com/lukedaoo/zodit/",
+            "live_link": "https://zodit.vercel.app/",
             "tags": [
                 "React", "TypeScript", "Vite", "TailwindCSS",
                 "Go", "MongoDB", "PostgreSQL"
