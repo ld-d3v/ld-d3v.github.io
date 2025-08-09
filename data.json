@@ -26,7 +26,7 @@
                 "Pug"
             ]
         },
-                {
+        {
             "id": "gifter",
             "name": "Gifter",
             "description": "Display gif in the terminal",
@@ -34,6 +34,16 @@
             "tags": [
                 "Go"
             ]
-        }
+        },
+        {
+            "id": "zodit",
+            "name": "Zodit",
+            "description": "Ultimate habit tracking app",
+            "source_link": "https://github.com/lukedaoo/zodit/",
+            "tags": [
+                "React", "TypeScript", "Vite", "TailwindCSS",
+                "Go", "MongoDB", "PostgreSQL"
+            ]
+        
     ]
 }
