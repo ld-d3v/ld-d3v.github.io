@@ -13,6 +13,26 @@
     },
     "projects": [
         {
+            "id": "zodit",
+            "name": "Zodit",
+            "description": "Ultimate habit tracking app",
+            "source_link": "https://github.com/lukedaoo/zodit/",
+            "live_link": "https://zodit.vercel.app/",
+            "tags": [
+                "React", "TypeScript", "Vite", "TailwindCSS",
+                "Go", "MongoDB", "PostgreSQL"
+            ]
+        },
+        {
+            "id": "gifter",
+            "name": "Gifter",
+            "description": "Display gif in the terminal",
+            "source_link": "https://github.com/lukedaoo/gifter/",
+            "tags": [
+                "Go"
+            ]
+        },
+        {
             "id": "personal-website",
             "name": "Personal website",
             "description": "This website",
@@ -27,24 +47,14 @@
             ]
         },
         {
-            "id": "gifter",
-            "name": "Gifter",
-            "description": "Display gif in the terminal",
-            "source_link": "https://github.com/lukedaoo/gifter/",
+            "id": "zen",
+            "name": "zen",
+            "description": "Zen time - calm yourself",
+            "source_link": "https://github.com/lukedaoo/zen",
+            "live_link": "https://lukedaoo.github.io/zen",
             "tags": [
-                "Go"
+                "HTML", "CSS", "JavaScript"
             ]
-        },
-        {
-            "id": "zodit",
-            "name": "Zodit",
-            "description": "Ultimate habit tracking app",
-            "source_link": "https://github.com/lukedaoo/zodit/",
-            "live_link": "https://zodit.vercel.app/",
-            "tags": [
-                "React", "TypeScript", "Vite", "TailwindCSS",
-                "Go", "MongoDB", "PostgreSQL"
-            ]
-        } 
+        }
     ]
 }
