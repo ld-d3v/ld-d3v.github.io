@@ -1,12 +1,8 @@
 @bodybgColor: #fefefe;
 @bodyTextColor: #454545;
-
-// Link Colors
 @linkColor: #07A;
 @linkVisitedColor: #941352;
 @linkVisitedInvertedColor: #ac5a82;
-// ===============
-
 @wrongColor: #c0392b;
 @shittyBlue: #0000EE;
 @shittyViolet: #551A8B;
@@ -14,9 +10,19 @@
 @blockQuoteColor: #456;
 @openQuoteColor: #666;
 
-// includes
-@import "./_btn_top.less";
-@import "./_projects.less";
+// Base styles
+body {
+    font-family: "Open Sans", Arial;
+    color: @bodyTextColor;
+    font-size: 16px;
+    margin: 1.5em auto;
+    max-width: 900px;
+    padding: 1em;
+    line-height: 1.5;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
 
 .light() {
     html {
@@ -25,7 +31,6 @@
 }
 
 .contrast() {
-    /* Accessibility first */
     @darkenBy: 25%;
 
     body {
@@ -57,39 +62,34 @@
     }
 }
 
-body {
-    font-family: "Open Sans", Arial;
-    color: @bodyTextColor;
-    font-size: 16px;
-    margin: 2em auto;
-    max-width: 800px;
-    padding: 1em;
-    line-height: 1.4;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-}
-
 html.contrast {
     .contrast();
 }
 
 .header-container {
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 
-    margin-right: auto;
+    h1#home {
+        font-size: 2em;
+        margin: 0;
+    }
 
     nav {
-        margin-left: auto;
         display: flex;
-        gap: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+        justify-content: flex-start;
 
         a {
             color: @linkColor;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1em;
 
             &:visited {
                 color: @linkVisitedColor;
@@ -109,11 +109,7 @@ html.contrast {
         color: lighten(#FFF - @bodyTextColor, @lightenBy);
     }
 
-    #invmode {
-        color: #FFF;
-        background-color: #000;
-    }
-
+    #invmode,
     #contrast {
         color: #FFF;
         background-color: #000;
@@ -176,7 +172,6 @@ html.contrast {
     }
 }
 
-
 a {
     color: @linkColor;
 
@@ -194,7 +189,6 @@ a {
     user-select: none;
 }
 
-
 span.citneed {
     vertical-align: top;
     font-size: 0.7em;
@@ -207,8 +201,8 @@ small {
 
 p.st {
     margin-top: -1em;
+    font-size: 1em;
 }
-
 
 ul {
     li {
@@ -220,26 +214,25 @@ ul {
 
 blockquote {
     color: @blockQuoteColor;
-    margin-left: 0;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin: 1.5em 0;
+    font-size: 1em;
 
     span {
         float: left;
-        margin-left: 1rem;
-        padding-top: 1rem;
+        margin-left: 0.5rem;
+        padding-top: 0.5rem;
     }
 
     author {
         display: block;
         clear: both;
-        font-size: 0.6em;
-        margin-left: 2.4rem;
+        font-size: 0.75em;
+        margin-left: 1.5rem;
         font-style: oblique;
 
         &:before {
             content: "- ";
-            margin-right: 1em;
+            margin-right: 0.5em;
         }
     }
 
@@ -247,12 +240,12 @@ blockquote {
         font-family: "Times New Roman", Times, Arial;
         color: @openQuoteColor;
         content: open-quote;
-        font-size: 2.2em;
+        font-size: 2em;
         font-weight: 600;
         float: left;
-        margin-top: 0em;
-        margin-right: 0.2rem;
-        width: 1.2rem;
+        margin-top: 0;
+        margin-right: 0.1rem;
+        width: 1rem;
     }
 
     &::after {
@@ -262,94 +255,483 @@ blockquote {
     }
 }
 
-@media screen and (max-width: 500px) {
-
-    body {
-        text-align: left;
-    }
-
-    div.fancyPositioning {
-        div.picture-left {
-            float: none;
-            width: inherit;
-        }
-
-        div.tleft {
-            float: none;
-            width: inherit;
-        }
-    }
-
-    blockquote {
-        span {
-            width: 80%;
-        }
-
-        author {
-            padding-top: 1em;
-            width: 80%;
-            margin-left: 15%;
-
-            &::before {
-                content: "";
-                margin-right: inherit;
-            }
-        }
-    }
-}
-
-span.visited {
-    color: @linkVisitedColor;
-}
-
-span.visited-maroon {
-    color: #85144b;
-}
-
-span.wr {
-    color: @wrongColor;
-    font-weight: 600;
-    text-decoration: underline;
-}
-
 button.cont-inv {
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 4px;
     position: fixed;
-    right: 10px;
+    right: 1rem;
     font-size: 0.8em;
     text-decoration: underline;
-    border: 0px;
-    padding: 2px 5px 2px 5px;
+    border: 0;
+    padding: 0.3em 0.6em;
 }
 
 #contrast {
     color: #000;
-    top: 10px;
+    top: 1rem;
 }
 
 #invmode {
     color: #FFF;
     background-color: #000;
-    position: fixed;
-    top: 34px;
-    text-decoration: underline;
-}
-
-@media screen and (max-width:1080px) {
-
-    #contrast {
-        position: absolute;
-    }
-
-    #invmode {
-        position: absolute;
-    }
+    top: 3rem;
 }
 
 .site-footer {
     text-align: center;
-    font-size: 0.85em;
-    margin-top: 4rem;
+    font-size: 0.9em;
+    margin-top: 3rem;
     padding-top: 1rem;
+}
+
+.btn-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1200;
+    padding: 0.5em 1em;
+    font-size: 0.85em;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: @linkVisitedColor;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+}
+
+.btn-top--visible {
+    opacity: .9;
+    pointer-events: auto;
+}
+
+.btn-top:hover {
+    opacity: 1;
+}
+
+html.dark .btn-top,
+html.dark_contrast .btn-top,
+html.inverted .btn-top {
+    background: lighten(@linkColor, 25%);
+}
+
+.btn-github,
+.btn-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.4em 0.8em;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    color: @bodybgColor;
+}
+
+.btn-github {
+    background: linear-gradient(135deg, @linkColor, darken(@linkColor, 10%));
+
+    &:hover {
+        background: linear-gradient(135deg, darken(@linkColor, 5%), darken(@linkColor, 15%));
+    }
+
+    .icon-github {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 16 16'><path d='M8 .198a8 8 0 0 0-2.53 15.599c.4.073.547-.173.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.923-.89-1.168-.89-1.168-.727-.497.055-.487.055-.487.803.056 1.225.825 1.225.825.714 1.222 1.873.87 2.33.665.072-.517.279-.87.507-1.07-1.777-.202-3.644-.888-3.644-3.953 0-.873.312-1.586.823-2.145-.083-.202-.357-1.016.078-2.117 0 0 .67-.215 2.2.82a7.659 7.659 0 0 1 4.003 0c1.53-1.035 2.2-.82 2.2-.82.435 1.101.161 1.915.08 2.117.513.559.823 1.272.823 2.145 0 3.073-1.87 3.748-3.652 3.947.287.248.543.735.543 1.48 0 1.07-.01 1.93-.01 2.193 0 .213.145.46.55.382A8.001 8.001 0 0 0 8 .198z'/></svg>");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+}
+
+.btn-live {
+    background: linear-gradient(135deg, @linkVisitedColor, darken(@linkVisitedColor, 10%));
+
+    &:hover {
+        background: linear-gradient(135deg, darken(@linkVisitedColor, 5%), darken(@linkVisitedColor, 15%));
+    }
+
+    .icon-live {
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z'/></svg>") no-repeat 50% 50% / 100% 100%;
+    }
+}
+
+#projects {
+    margin-top: 3rem;
+
+    .project {
+        background: lighten(#000, 5%);
+        border-left: 4px solid @linkVisitedColor;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h3 {
+            margin: 0 0 0.5em;
+            font-size: 1.3em;
+            color: lighten(@linkColor, 10%);
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0.5em 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        ul.tech {
+            margin: 0.5em 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+
+            li {
+                padding: 0.3em 0.6em;
+                border-radius: 12px;
+                background: linear-gradient(135deg, #22d3ee, #0891b2);
+                color: #082f49;
+                font-size: 0.8em;
+                font-weight: bold;
+                border: 1px solid rgba(8, 47, 73, 0.3);
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background: linear-gradient(135deg, #67e8f9, #22d3ee);
+                }
+            }
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: flex-end;
+        }
+    }
+
+    html.inverted & .project {
+        background: lighten(@bodybgColor, 1%);
+        border-color: lighten(@bodyTextColor, 60%);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+        &:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: @linkColor;
+        }
+
+        p {
+            color: lighten(@bodyTextColor, 5%);
+        }
+
+        ul.tech li {
+            background: linear-gradient(135deg, #164e63, #0c3a4a);
+            color: #d1faff;
+            border-color: rgba(209, 250, 255, 0.2);
+
+            &:hover {
+                background: linear-gradient(135deg, #1e5a6b, #164e63);
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 15px;
+        padding: 0.75em;
+        margin: 1em auto;
+    }
+
+    .header-container {
+        h1#home {
+            font-size: 1.8em;
+        }
+
+        nav {
+            gap: 0.75rem;
+
+            a {
+                font-size: 0.95em;
+            }
+        }
+    }
+
+    p.st {
+        font-size: 0.95em;
+    }
+
+    p[style="text-align: center"] {
+        font-size: 0.9em;
+
+        a {
+            font-size: 0.9em;
+        }
+    }
+
+    blockquote {
+        font-size: 0.95em;
+
+        span {
+            margin-left: 0.3rem;
+        }
+
+        author {
+            margin-left: 1rem;
+            font-size: 0.7em;
+        }
+
+        &::before {
+            font-size: 1.8em;
+        }
+    }
+
+    #projects {
+        margin-top: 2rem;
+
+        .project {
+            padding: 0.75rem;
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            ul.tech {
+                gap: 0.4rem;
+
+                li {
+                    font-size: 0.75em;
+                    padding: 0.25em 0.5em;
+                }
+            }
+
+            .button-group {
+                gap: 0.4rem;
+
+                .btn-github,
+                .btn-live {
+                    font-size: 0.8em;
+                    padding: 0.35em 0.7em;
+                }
+            }
+        }
+    }
+
+    button.cont-inv {
+        font-size: 0.75em;
+        padding: 0.25em 0.5em;
+    }
+
+    #contrast {
+        top: 0.75rem;
+    }
+
+    #invmode {
+        top: 2.5rem;
+    }
+
+    .btn-top {
+        font-size: 0.8em;
+        padding: 0.4em 0.8em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        font-size: 14px;
+        padding: 0.5em;
+        margin: 0.5em auto;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        h1#home {
+            font-size: 1.5em;
+        }
+
+        nav {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+
+            a {
+                font-size: 0.9em;
+            }
+        }
+    }
+
+    p.st {
+        font-size: 0.9em;
+    }
+
+    p[style="text-align: center"] {
+        font-size: 0.85em;
+
+        a {
+            font-size: 0.85em;
+        }
+    }
+
+    blockquote {
+        font-size: 0.9em;
+
+        span {
+            width: 85%;
+            margin-left: 0.3rem;
+        }
+
+        author {
+            margin-left: 1rem;
+            font-size: 0.65em;
+        }
+
+        &::before {
+            font-size: 1.6em;
+        }
+    }
+
+    #projects {
+        margin-top: 1.5rem;
+
+        .project {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+
+            h3 {
+                font-size: 1.1em;
+            }
+
+            p {
+                font-size: 0.85em;
+            }
+
+            ul.tech {
+                gap: 0.3rem;
+
+                li {
+                    font-size: 0.7em;
+                    padding: 0.2em 0.4em;
+                }
+            }
+
+            .button-group {
+                flex-direction: row;
+                align-items: flex-end;
+                gap: 0.3rem;
+
+                .btn-github,
+                .btn-live {
+                    font-size: 0.75em;
+                    padding: 0.3em 0.6em;
+                    width: auto;
+                    /* Reset to auto to allow natural width */
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    button.cont-inv {
+        font-size: 0.7em;
+        padding: 0.2em 0.4em;
+        right: 0.5rem;
+    }
+
+    #contrast {
+        top: 0.5rem;
+    }
+
+    #invmode {
+        top: 2rem;
+    }
+
+    .btn-top {
+        font-size: 0.75em;
+        padding: 0.3em 0.6em;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .site-footer {
+        font-size: 0.85em;
+        padding: 0.75rem 0;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    body {
+        font-size: 13px;
+        padding: 0.4em;
+    }
+
+    .header-container {
+        h1#home {
+            font-size: 1.3em;
+        }
+
+        nav {
+            gap: 0.4rem;
+
+            a {
+                font-size: 0.85em;
+            }
+        }
+    }
+
+    p.st {
+        font-size: 0.85em;
+    }
+
+    p[style="text-align: center"] {
+        font-size: 0.8em;
+
+        a {
+            font-size: 0.8em;
+        }
+    }
+
+    #projects {
+        .project {
+            h3 {
+                font-size: 1em;
+            }
+
+            p {
+                font-size: 0.8em;
+            }
+
+            ul.tech {
+                li {
+                    font-size: 0.65em;
+                }
+            }
+        }
+    }
 }
