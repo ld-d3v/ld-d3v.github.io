@@ -15,22 +15,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ────────────────
-  # 1. Build Job
-  # ────────────────
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache minhtml
+        id: minhtml-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/minhtml
+          key: minhtml-${{ runner.os }}
+
+      - name: Install minhtml
+        if: steps.minhtml-cache.outputs.cache-hit != 'true'
+        run: cargo install minhtml --locked
+
+      - name: Build
+        run: make
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
-  # ────────────────
-  # 2. Deploy Job
-  # ────────────────
   deploy:
     environment:
       name: github-pages
