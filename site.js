@@ -55,6 +55,16 @@ function el(tag, text, cls) {
     return e;
 }
 
+function fold(head, cls) {
+    const d = el("details", null, "fold" + (cls ? " " + cls : ""));
+    const sum = el("summary");
+
+    d.open = true;
+    sum.appendChild(head);
+    d.appendChild(sum);
+    return d;
+}
+
 function link(label, href) {
     const a = el("a", label);
     a.href = href;
@@ -89,10 +99,12 @@ function renderControls() {
     const c = el("button", "Contrast", "btn contrast");
     c.onclick = () => setContrast(!document.documentElement.hasAttribute("data-contrast"), true);
     box.appendChild(c);
+
     setContrast(document.documentElement.hasAttribute("data-contrast"));
     const t = el("button", null, "btn theme");
     t.onclick = toggleTheme;
     box.appendChild(t);
+
     document.body.prepend(box);
     updateThemeButton();
     setAccent(document.documentElement.getAttribute("data-accent"));

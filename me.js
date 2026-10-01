@@ -1,14 +1,18 @@
 renderShell();
 
 const me = document.getElementById("me");
-me.appendChild(el("h2", "Me"));
+const meFold = fold(el("h2", "Me"));
+
+me.appendChild(meFold);
+
 CONTENT.writeups.forEach((w) => {
-    const box = el("details", null, "post");
-    box.open = true;
-    const head = el("summary");
+    const head = el("span");
+
     head.appendChild(el("span", "[ " + w.date + " ] ", "muted"));
     head.appendChild(w.url ? link(w.title, w.url) : el("strong", w.title));
-    box.appendChild(head);
+
+    const box = fold(head, "post");
+
     w.lines.forEach((line) => box.appendChild(el("p", line)));
-    me.appendChild(box);
+    meFold.appendChild(box);
 });
