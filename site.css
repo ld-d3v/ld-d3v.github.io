@@ -41,7 +41,6 @@
         --accent-purple: #7c3aed;
         --accent-green: #15803d;
         --accent-white: #111111;
-        --accent-white: #111111;
         --on-accent: #ffffff;
         color-scheme: light;
     }
@@ -147,13 +146,6 @@ h2 {
     border-bottom: 1px solid var(--accent);
 }
 
-h3 {
-    font-size: 1rem;
-    color: var(--accent);
-    margin-top: 1rem;
-    margin-bottom: 0;
-}
-
 p,
 .muted {
     color: var(--text-secondary);
@@ -176,9 +168,6 @@ a:hover {
 
 .entry {
     margin: 1.5rem 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
 }
 
 .entry-head {
@@ -375,10 +364,6 @@ footer {
 
 .fold > summary::-webkit-details-marker {
     display: none;
-}
-
-.entry.fold {
-    display: block;
 }
 
 .entry.fold > * + * {
