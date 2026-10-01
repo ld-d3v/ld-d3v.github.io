@@ -1,6 +1,6 @@
 DIST := dist
 PAGES := index.html me.html
-SCRIPTS := content.js site.js index.js me.js
+SCRIPTS := content.js writeup.js site.js ui.js index.js me.js
 STYLES := site.css
 ESBUILD := npx --yes esbuild@0.25
 

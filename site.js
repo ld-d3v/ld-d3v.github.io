@@ -88,23 +88,34 @@ function bracketed(items) {
 
 function renderControls() {
     const box = el("div", null, "controls");
+    const panel = el("div", null, "controls-panel");
     ACCENTS.forEach((name) => {
         const b = el("button", null, "swatch");
         b.dataset.accent = name;
         b.title = name;
         b.setAttribute("aria-label", "Accent " + name);
         b.onclick = () => setAccent(name, true);
-        box.appendChild(b);
+        panel.appendChild(b);
     });
     const c = el("button", "Contrast", "btn contrast");
     c.onclick = () => setContrast(!document.documentElement.hasAttribute("data-contrast"), true);
-    box.appendChild(c);
+    panel.appendChild(c);
 
     setContrast(document.documentElement.hasAttribute("data-contrast"));
     const t = el("button", null, "btn theme");
     t.onclick = toggleTheme;
-    box.appendChild(t);
+    panel.appendChild(t);
 
+    const toggle = el("button", "Style", "options");
+    const setPanel = (open, save) => {
+        panel.hidden = !open;
+        toggle.setAttribute("aria-expanded", String(open));
+        if (save) localStorage.setItem("controls", open ? "open" : "closed");
+    };
+    toggle.onclick = () => setPanel(panel.hidden, true);
+    setPanel(localStorage.getItem("controls") !== "closed");
+
+    box.append(panel, toggle);
     document.body.prepend(box);
     updateThemeButton();
     setAccent(document.documentElement.getAttribute("data-accent"));
@@ -130,5 +141,5 @@ function renderShell(title) {
     const here = location.pathname.split("/").pop() || "index.html";
     const links = CONTENT.links.map((l) => (l.href === here ? { label: "home", href: "index.html" } : l));
     document.getElementById("nav").appendChild(bracketed(links));
-    document.getElementById("footer").textContent = CONTENT.footer;
+    document.getElementById("footer").textContent = CONTENT.footer.replace("{year}", new Date().getFullYear());
 }

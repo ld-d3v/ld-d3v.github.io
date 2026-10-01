@@ -55,7 +55,8 @@ const CONTENT = {
             domain: "Game Dev",
             items: [
                 {
-                    name: "Zod ngine", desc: "A minimal, humble game engine written in C.",
+                    name: "Zod ngine", 
+                    lines: ["A minimal, humble game engine written in C."],
                     code: "https://github.com/lukedaoo/zod-ngine",
                     live: "https://lukedaoo.github.io/zod-beatup-webgame/",
                     tech: ["C", "OpenGL", "SDL3"],
@@ -69,7 +70,7 @@ const CONTENT = {
             items: [
                 {
                     name: "Zodit",
-                    desc: "An app that I use to track things.",
+                    lines: ["An app that I use to track things."],
                     code: "https://github.com/lukedaoo/zodit/",
                     live: "https://zodit.vercel.app/",
                     preview: ["assets/zodit.png"],
@@ -79,7 +80,7 @@ const CONTENT = {
                 },
                 {
                     name: "Zen",
-                    desc: "Zen: calm yourself.",
+                    lines: ["Zen: calm yourself."],
                     code: "https://github.com/lukedaoo/zen",
                     live: "https://lukedaoo.github.io/zen/",
                     preview: ["assets/zen.png"],
@@ -89,15 +90,5 @@ const CONTENT = {
             ],
         },
     ],
-    writeups: [
-        {
-            date: "2026-10-01",
-            title: "Hello",
-            url: null,
-            lines: [
-                "World"
-            ],
-        },
-    ],
-    footer: "Copyright © 2026 LD",
+    footer: "Copyright © {year} LD",
 };
