@@ -181,7 +181,8 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
 }
 
 .post {
@@ -294,4 +295,26 @@ footer {
 .btn:hover {
     background-color: var(--text-primary);
     border-color: var(--text-primary);
+}
+
+@media (max-width: 520px) {
+    .controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    header {
+        padding-top: 4.5rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .tip {
+        max-width: 90vw;
+    }
 }
