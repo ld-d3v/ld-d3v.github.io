@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Me</title>
+    <link rel="stylesheet" href="site.css">
+    <script src="content.js"></script>
+    <script src="site.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="name"></h1>
+        <nav id="nav"></nav>
+    </header>
+    <main>
+        <section id="me"></section>
+    </main>
+    <footer id="footer"></footer>
+
+    <script>
+        renderShell(CONTENT.name + " · me");
+
+        const me = document.getElementById("me");
+        me.appendChild(el("h2", "Me"));
+        CONTENT.writeups.forEach((w) => {
+            const box = el("details", null, "post");
+            box.open = true;
+            const head = el("summary");
+            head.appendChild(el("span", "[ " + w.date + " ] ", "muted"));
+            head.appendChild(w.url ? link(w.title, w.url) : el("strong", w.title));
+            box.appendChild(head);
+            w.lines.forEach((line) => box.appendChild(el("p", line)));
+            me.appendChild(box);
+        });
+    </script>
+</body>
+
+</html>

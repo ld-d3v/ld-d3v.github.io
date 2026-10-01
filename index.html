@@ -4,136 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Under Construction</title>
-    <style>
-        :root,
-        [data-theme="dark"] {
-            --bg-primary: #111111;
-            --bg-secondary: #1a1a1a;
-            --text-primary: #eeeeee;
-            --text-secondary: #888888;
-            --border-color: #222222;
-            --accent-color: #ffffff;
-            --accent-hover: #cccccc;
-            --card-bg: #161616;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            color-scheme: dark;
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f4f4f4;
-            --text-primary: #111111;
-            --text-secondary: #666666;
-            --border-color: #e5e5e5;
-            --accent-color: #111111;
-            --accent-hover: #333333;
-            --card-bg: #fafafa;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            color-scheme: light;
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root:not([data-theme="dark"]) {
-                --bg-primary: #ffffff;
-                --bg-secondary: #f4f4f4;
-                --text-primary: #111111;
-                --text-secondary: #666666;
-                --border-color: #e5e5e5;
-                --accent-color: #111111;
-                --accent-hover: #333333;
-                --card-bg: #fafafa;
-                --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                color-scheme: light;
-            }
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: system-ui, sans-serif;
-            text-align: center;
-            line-height: 1.5;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        p {
-            color: var(--text-secondary);
-        }
-
-        a {
-            color: var(--text-primary);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
-
-        a:hover {
-            color: var(--text-secondary);
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .text-muted {
-            color: var(--text-secondary);
-        }
-
-        .btn {
-            background-color: var(--text-primary);
-            color: var(--bg-primary);
-            border: 1px solid var(--text-primary);
-            border-radius: 4px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.15s ease, color 0.15s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--text-secondary);
-            border-color: var(--text-secondary);
-            color: var(--bg-primary);
-        }
-    </style>
+    <title>Personal site</title>
+    <link rel="stylesheet" href="site.css">
+    <script src="content.js"></script>
+    <script src="site.js"></script>
 </head>
 
 <body>
-    <main class="card">
-        <h1>Minimal Site</h1>
-        <p>A simple, zero-dependency static page setup.</p>
-        <button class="btn" onclick="toggleTheme()">Toggle Theme</button>
+    <header>
+        <h1 id="name"></h1>
+        <nav id="nav"></nav>
+    </header>
+    <main>
+        <section id="intro"></section>
+        <section id="projects"></section>
     </main>
+    <footer id="footer"></footer>
 
     <script>
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute("data-theme");
-            const target = current === "light" ? "dark" : "light";
-            document.documentElement.setAttribute("data-theme", target);
-            localStorage.setItem("theme", target);
+        renderShell();
+
+        const intro = document.getElementById("intro");
+        intro.appendChild(el("h2", "Hello"));
+        intro.appendChild(el("p", CONTENT.intro));
+
+        function previewNode(images) {
+            const wrap = el("span", "preview", "preview");
+            wrap.tabIndex = 0;
+            const tip = el("span", null, "tip");
+            images.forEach((src) => {
+                const img = el("img");
+                img.src = src;
+                img.alt = "";
+                img.loading = "lazy";
+                tip.appendChild(img);
+            });
+            wrap.appendChild(tip);
+            return wrap;
         }
 
-        const saved = localStorage.getItem("theme");
-        if (saved) {
-            document.documentElement.setAttribute("data-theme", saved);
+        // muted "Label: value" line under a project
+        function meta(box, label, value) {
+            const t = el("p", null, "tech");
+            t.appendChild(el("span", label + ": ", "tech-label"));
+            t.appendChild(document.createTextNode(value));
+            box.appendChild(t);
         }
+
+        const projects = document.getElementById("projects");
+        projects.appendChild(el("h2", "Projects"));
+        CONTENT.projects.forEach((group) => {
+            projects.appendChild(el("h3", group.domain));
+            group.items.forEach((p) => {
+                const box = el("div", null, "project");
+                const head = el("div", null, "project-head");
+                const title = el("span");
+                title.appendChild(el("strong", p.name));
+                if (p.start) title.appendChild(el("span", " " + p.start + (p.end ? " – " + p.end : ""), "muted date"));
+                head.appendChild(title);
+                const items = [];
+                if (p.code) items.push({label: "code", href: p.code});
+                if (p.live) items.push({label: "live", href: p.live});
+                if (p.preview && p.preview.length) items.push({node: previewNode(p.preview)});
+                if (items.length) head.appendChild(bracketed(items));
+                box.appendChild(head);
+                [].concat(p.desc).forEach((line) => box.appendChild(el("p", line)));
+                if (p.tech && p.tech.length) meta(box, "Tech", p.tech.join(" · "));
+                projects.appendChild(box);
+            });
+        });
     </script>
 </body>
 
