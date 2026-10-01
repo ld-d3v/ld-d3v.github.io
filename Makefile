@@ -1,6 +1,6 @@
 DIST := dist
 PAGES := index.html me.html
-SCRIPTS := content.js site.js
+SCRIPTS := content.js site.js index.js me.js
 STYLES := site.css
 ESBUILD := npx --yes esbuild@0.25
 
@@ -19,6 +19,7 @@ all: clean
 	done
 	$(ESBUILD) $(SCRIPTS) $(STYLES) --minify --outdir=$(DIST)
 	cp -r assets $(DIST)/
+	cp robots.txt sitemap.xml $(DIST)/
 
 clean:
 	rm -rf $(DIST)

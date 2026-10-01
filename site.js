@@ -110,7 +110,7 @@ function renderToTop() {
 }
 
 function renderShell(title) {
-    document.title = title || CONTENT.name;
+    if (title) document.title = title;
     renderControls();
     renderToTop();
     document.getElementById("name").textContent = CONTENT.name;
