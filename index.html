@@ -40,10 +40,24 @@
                 tip.appendChild(img);
             });
             wrap.appendChild(tip);
+            const place = () => {
+                tip.style.top = tip.style.bottom = tip.style.maxHeight = "";
+                if (!matchMedia("(max-width: 720px)").matches) return;
+                const r = wrap.getBoundingClientRect();
+                const gap = 8;
+                if (r.top > innerHeight - r.bottom) {
+                    tip.style.bottom = innerHeight - r.top + gap + "px";
+                    tip.style.maxHeight = r.top - gap * 2 + "px";
+                } else {
+                    tip.style.top = r.bottom + gap + "px";
+                    tip.style.maxHeight = innerHeight - r.bottom - gap * 2 + "px";
+                }
+            };
+            wrap.addEventListener("mouseenter", place);
+            wrap.addEventListener("focus", place);
             return wrap;
         }
 
-        // muted "Label: value" line under a project
         function meta(box, label, value) {
             const t = el("p", null, "tech");
             t.appendChild(el("span", label + ": ", "tech-label"));

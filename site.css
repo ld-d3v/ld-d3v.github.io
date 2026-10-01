@@ -117,7 +117,7 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: system-ui, sans-serif;
-    line-height: 1.6;
+    line-height: 1.75;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -132,25 +132,26 @@ footer {
 header {
     text-align: center;
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0;
 }
 
 h1 {
     font-size: 2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 h2 {
     font-size: 1.1rem;
-    margin: 2rem 0 0.75rem;
-    padding-bottom: 0.25rem;
+    margin: 3rem 0 1.25rem;
+    padding-bottom: 0.4rem;
     border-bottom: 1px solid var(--accent);
 }
 
 h3 {
     font-size: 1rem;
     color: var(--accent);
-    margin-top: 1.25rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.5rem;
 }
 
 p,
@@ -174,7 +175,10 @@ a:hover {
 }
 
 .project {
-    margin: 0.75rem 0 0 1.25rem;
+    margin: 1.5rem 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .project-head {
@@ -191,7 +195,7 @@ a:hover {
 
 .tech {
     font-size: 0.85rem;
-    margin-top: 0.15rem;
+    margin-top: 0.25rem;
 }
 
 .tech-label {
@@ -297,6 +301,16 @@ footer {
     border-color: var(--text-primary);
 }
 
+.to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+.to-top[hidden] {
+    display: none;
+}
+
 @media (max-width: 520px) {
     .controls {
         position: absolute;
@@ -313,8 +327,22 @@ footer {
     h1 {
         font-size: 1.6rem;
     }
+}
 
+@media (max-width: 720px) {
     .tip {
-        max-width: 90vw;
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: auto;
+        width: auto;
+        max-width: none;
+        max-height: 70vh;
+        overflow-y: auto;
+        margin-bottom: 0;
+    }
+
+    .tip img {
+        width: 100%;
     }
 }

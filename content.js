@@ -15,7 +15,7 @@ const CONTENT = {
                 {
                     name: "Zod ngine", desc: "A minimal, humble game engine written in C.",
                     code: "https://github.com/lukedaoo/zod-ngine",
-                    live: null,
+                    live: "https://lukedaoo.github.io/zod-beatup-webgame/",
                     tech: ["C", "OpenGL", "SDL3"],
                     start: "May 2026",
                     end: "Aug 2026"

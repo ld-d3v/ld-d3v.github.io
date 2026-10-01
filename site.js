@@ -1,4 +1,3 @@
-// attribute if set, else the OS preference
 function currentTheme() {
     return (
         document.documentElement.getAttribute("data-theme") ||
@@ -99,9 +98,21 @@ function renderControls() {
     setAccent(document.documentElement.getAttribute("data-accent"));
 }
 
+function renderToTop() {
+    const b = el("button", "Top", "btn to-top");
+    b.setAttribute("aria-label", "Back to top");
+    b.hidden = true;
+    b.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+    document.body.appendChild(b);
+    const update = () => { b.hidden = scrollY < 300; };
+    addEventListener("scroll", update, { passive: true });
+    update();
+}
+
 function renderShell(title) {
     document.title = title || CONTENT.name;
     renderControls();
+    renderToTop();
     document.getElementById("name").textContent = CONTENT.name;
 
     const here = location.pathname.split("/").pop() || "index.html";
