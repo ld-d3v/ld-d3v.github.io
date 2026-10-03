@@ -95,9 +95,7 @@ const RESUME_CONTENT = {
                     {
                         name: "zpw",
                         date: { start: "Oct 2026", end: "Oct 2026" },
-                        lines: [
-                            "The personal website template to build this website",
-                        ],
+                        lines: ["The template used to build this site"],
                         links: {
                             code: "https://github.com/lukedaoo/zpw/",
                         },
