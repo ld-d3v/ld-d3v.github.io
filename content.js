@@ -93,6 +93,17 @@ const RESUME_CONTENT = {
                 title: "Web Dev",
                 projects: [
                     {
+                        name: "zpw",
+                        date: { start: "Oct 2026", end: "Oct 2026" },
+                        lines: [
+                            "The personal website template to build this website",
+                        ],
+                        links: {
+                            code: "https://github.com/lukedaoo/zpw/",
+                        },
+                        techs: ["Javascript", "Markdown"],
+                    },
+                    {
                         name: "Zodit",
                         date: { start: "July 2025", end: "Sept 2025" },
                         lines: ["An app that I use to track things."],

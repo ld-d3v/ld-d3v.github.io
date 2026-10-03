@@ -1,7 +1,7 @@
 DIST := dist
 PAGES := index.html
-SCRIPTS := content.js updates.js blogs-index.js index.js
-STYLES := index.css
+SCRIPTS := lib/zpw.min.js content.js updates.js blogs-index.js index.js
+STYLES := lib/zpw.min.css index.css
 ESBUILD := npx --yes esbuild@0.25
 
 PANDOC := pandoc --from markdown --to html5 --standalone --template=build-artifact/post.html
@@ -35,21 +35,30 @@ blogs/%.html: posts/%.md build-artifact/post.html
 	@mkdir -p $(@D)
 	$(PANDOC) -V style=../lib/zpw.min.css -V script=../lib/zpw.min.js $< -o $@
 
+REWRITE := sed -E \
+	-e '/<link[^>]*href="index\.css"/d' \
+	-e '/<script[^>]*src="(content|updates|blogs-index|index)\.js"/d' \
+	-e 's|lib/zpw\.min\.css|bundle.css|' \
+	-e 's|lib/zpw\.min\.js|bundle.js|'
+
 minify: index compile-blogs
 	rm -rf $(DIST)
 	mkdir -p $(DIST)
 	for f in $(PAGES) $(BLOG_PAGES); do \
 	  mkdir -p $(DIST)/$$(dirname $$f); \
+	  $(REWRITE) $$f > $(DIST)/$$f.pre; \
 	  minhtml \
 	    --minify-css \
 	    --minify-js \
 	    --minify-doctype \
 	    --allow-optimal-entities \
 	    --allow-removing-spaces-between-attributes \
-	    -o $(DIST)/$$f $$f; \
+	    -o $(DIST)/$$f $(DIST)/$$f.pre; \
+	  rm $(DIST)/$$f.pre; \
 	done
-	$(ESBUILD) $(SCRIPTS) $(STYLES) --minify --outdir=$(DIST)
-	cp -r assets lib $(DIST)/
+	cat $(SCRIPTS) | $(ESBUILD) --loader=js --minify > $(DIST)/bundle.js
+	cat $(STYLES) | $(ESBUILD) --loader=css --minify > $(DIST)/bundle.css
+	cp -r assets $(DIST)/
 	cp robots.txt sitemap.xml $(DIST)/
 
 clean:

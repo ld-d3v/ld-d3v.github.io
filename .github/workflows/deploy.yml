@@ -46,8 +46,8 @@ jobs:
       - name: Check build output
         run: |
           test -f dist/index.html
-          test -f dist/lib/zpw.min.js
-          test -f dist/lib/zpw.min.css
+          test -f dist/bundle.js
+          test -f dist/bundle.css
           ls dist/blogs/*.html
 
       - name: Upload site
