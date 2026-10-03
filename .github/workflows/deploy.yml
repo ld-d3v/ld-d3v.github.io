@@ -3,6 +3,7 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -31,8 +32,23 @@ jobs:
         if: steps.minhtml-cache.outputs.cache-hit != 'true'
         run: cargo install minhtml --locked
 
+      - name: Put cargo binaries on PATH
+        run: echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
       - name: Build
         run: make
+
+      - name: Check build output
+        run: |
+          test -f dist/index.html
+          test -f dist/lib/zpw.min.js
+          test -f dist/lib/zpw.min.css
+          ls dist/blogs/*.html
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
@@ -40,6 +56,7 @@ jobs:
           path: dist
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
