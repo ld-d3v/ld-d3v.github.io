@@ -1,4 +1,5 @@
 dist/
 blogs/
+lib/
 
 blogs-index.js

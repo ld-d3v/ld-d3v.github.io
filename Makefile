@@ -4,14 +4,20 @@ SCRIPTS := lib/zpw.min.js content.js updates.js blogs-index.js index.js
 STYLES := lib/zpw.min.css index.css
 ESBUILD := npx --yes esbuild@0.25
 
-PANDOC := pandoc --from markdown --to html5 --standalone --template=build-artifact/post.html
+.DEFAULT_GOAL := all
+include zpw.mk
+
+SITE_URL := https://ld-d3v.github.io/
+FAVICON := assets/favicon.svg
+
+PANDOC := pandoc --from markdown --to html5 --standalone --wrap=none --template=build-artifact/post.html
 POSTS := $(wildcard posts/*.md)
 SLUGS := $(basename $(notdir $(POSTS)))
 BLOG_PAGES := $(SLUGS:%=blogs/%.html)
 
 .PHONY: all index compile-blogs minify clean
 
-all: index compile-blogs minify
+all: $(ZPW_LIB) index compile-blogs minify
 
 index: blogs-index.js
 
@@ -33,13 +39,14 @@ compile-blogs: $(BLOG_PAGES)
 
 blogs/%.html: posts/%.md build-artifact/post.html
 	@mkdir -p $(@D)
-	$(PANDOC) -V style=../lib/zpw.min.css -V script=../lib/zpw.min.js $< -o $@
+	$(PANDOC) -V slug=$* -V siteurl=$(SITE_URL) -V favicon=../$(FAVICON) \
+	  -V style=../lib/zpw.min.css -V script=../lib/zpw.min.js $< -o $@
 
 REWRITE := sed -E \
 	-e '/<link[^>]*href="index\.css"/d' \
 	-e '/<script[^>]*src="(content|updates|blogs-index|index)\.js"/d' \
-	-e 's|lib/zpw\.min\.css|bundle.css|' \
-	-e 's|lib/zpw\.min\.js|bundle.js|'
+	-e 's|lib/zpw\.min\.css|bundle.min.css|' \
+	-e 's|lib/zpw\.min\.js|bundle.min.js|'
 
 minify: index compile-blogs
 	rm -rf $(DIST)
@@ -56,10 +63,24 @@ minify: index compile-blogs
 	    -o $(DIST)/$$f $(DIST)/$$f.pre; \
 	  rm $(DIST)/$$f.pre; \
 	done
-	cat $(SCRIPTS) | $(ESBUILD) --loader=js --minify > $(DIST)/bundle.js
-	cat $(STYLES) | $(ESBUILD) --loader=css --minify > $(DIST)/bundle.css
+	cat $(SCRIPTS) | $(ESBUILD) --loader=js --minify > $(DIST)/bundle.min.js
+	cat $(STYLES) | $(ESBUILD) --loader=css --minify > $(DIST)/bundle.min.css
 	cp -r assets $(DIST)/
-	cp robots.txt sitemap.xml $(DIST)/
+	cp robots.txt $(DIST)/
+	@{ \
+	  echo '<?xml version="1.0" encoding="UTF-8"?>'; \
+	  echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'; \
+	  echo '  <url><loc>$(SITE_URL)</loc></url>'; \
+	  for f in $(POSTS); do \
+	    slug=$$(basename $$f .md); \
+	    date=$$(pandoc --from markdown --to plain --standalone \
+	      --template=build-artifact/lastmod.tpl $$f | tr -d '[:space:]'); \
+	    mod=""; \
+	    [ -n "$$date" ] && mod="<lastmod>$$date</lastmod>"; \
+	    echo "  <url><loc>$(SITE_URL)blogs/$$slug.html</loc>$$mod</url>"; \
+	  done; \
+	  echo '</urlset>'; \
+	} > $(DIST)/sitemap.xml
 
 clean:
 	rm -rf $(DIST)

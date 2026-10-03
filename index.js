@@ -4,6 +4,17 @@ if (!IS_BLOG_POST) {
     App({
         header: HEADER_CONTENT,
         footer: FOOTER_CONTENT,
+        seo: {
+            description:
+                "Loc Dao (LD) – software engineer. Projects in game dev and web dev, plus some writing.",
+            url: "https://ld-d3v.github.io/",
+            siteName: "Loc Dao (LD)",
+            author: "Loc Dao",
+            themeColor: "#000000",
+            image: "https://ld-d3v.github.io/assets/og-image.png",
+            imageAlt: "Loc Dao (LD)",
+            locale: "en_US",
+        },
         routes: [
             { path: "/", render: () => Resume(RESUME_CONTENT) },
             {

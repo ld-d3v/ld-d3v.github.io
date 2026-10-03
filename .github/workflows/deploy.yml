@@ -46,8 +46,10 @@ jobs:
       - name: Check build output
         run: |
           test -f dist/index.html
-          test -f dist/bundle.js
-          test -f dist/bundle.css
+          test -f dist/bundle.min.js
+          test -f dist/bundle.min.css
+          test -f dist/sitemap.xml
+          test -f dist/assets/favicon.svg
           ls dist/blogs/*.html
 
       - name: Upload site
