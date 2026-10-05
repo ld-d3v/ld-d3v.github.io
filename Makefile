@@ -1,6 +1,7 @@
 DIST := dist
 PAGES := index.html
-SCRIPTS := lib/zpw.min.js content.js updates.js blogs-index.js index.js
+DECKS := $(sort $(wildcard decks/*.js))
+SCRIPTS := lib/zpw.min.js content.js updates.js blogs-index.js $(DECKS) index.js
 STYLES := lib/zpw.min.css index.css
 ESBUILD := npx --yes esbuild@0.25
 
@@ -44,7 +45,7 @@ blogs/%.html: posts/%.md build-artifact/post.html
 
 REWRITE := sed -E \
 	-e '/<link[^>]*href="index\.css"/d' \
-	-e '/<script[^>]*src="(content|updates|blogs-index|index)\.js"/d' \
+	-e '/<script[^>]*src="(content|updates|blogs-index|index|decks\/[^"]*)\.js"/d' \
 	-e 's|lib/zpw\.min\.css|bundle.min.css|' \
 	-e 's|lib/zpw\.min\.js|bundle.min.js|'
 

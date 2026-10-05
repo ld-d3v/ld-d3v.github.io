@@ -27,6 +27,11 @@ if (!IS_BLOG_POST) {
                 title: "Blogs",
                 render: () => Blogs(BLOGS_INDEX),
             },
+            {
+                path: "/decks",
+                title: "Decks",
+                render: () => Decks(),
+            },
         ],
     });
 }
