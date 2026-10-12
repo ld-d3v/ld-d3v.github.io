@@ -91,6 +91,21 @@ const RESUME_CONTENT = {
                 ],
             },
             {
+                title: "Tool",
+                projects: [
+                    {
+                        name: "zcode-review",
+                        date: { start: "Oct 2026", end: "Oct 2026" },
+                        lines: ["Review local Git changes before committing them in a GitHub-style HTML page."],
+                        links: {
+                            code: "https://github.com/lukedaoo/zself-code-review",
+                            live: "https://lukedaoo.github.io/zself-code-review/",
+                        },
+                        techs: ["Javascript", "Python"],
+                    },
+                ],
+            },
+            {
                 title: "Web Dev",
                 projects: [
                     {
